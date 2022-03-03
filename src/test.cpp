@@ -10,4 +10,7 @@ void runAllTests()
     cout << "running all tests! \n";
     firstConstructorTest();
     secondConstructorTest();
+    matrixAdditionTest();
+    minusMatrixTest();
+    substractionMatrixTest();
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cassert>
 #include "../headers/matrix.h"
 
 using namespace std;
@@ -31,3 +32,38 @@ string Matrix::toString()
 
 int &Matrix::_n() { return n; }
 int &Matrix::_m() { return m; }
+
+Matrix Matrix::operator+(Matrix &matrix)
+{
+    assert((n == matrix._n() || m == matrix._m()) && "can't add two matrices with different dimenssions");
+
+    Matrix res(n, m, 0);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            res.matrix[i][j] = this->matrix[i][j] + matrix.matrix[i][j];
+        }
+    }
+    return res;
+}
+
+Matrix Matrix::operator-()
+{
+    Matrix res(n, m, 0);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            res.matrix[i][j] = -matrix[i][j];
+        }
+    }
+    return res;
+}
+
+Matrix Matrix::operator-(Matrix &a)
+{
+    Matrix res(n, m, 0);
+    res = -a + *this;
+    return res;
+}

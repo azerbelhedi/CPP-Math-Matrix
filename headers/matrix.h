@@ -20,4 +20,12 @@ public:
     string toString();
     int &_n();
     int &_m();
+    Matrix operator+(Matrix &matrix);
+    Matrix operator-(Matrix &matrix);
+    Matrix operator-();
+    // scalar*b
+    // b*scalar
+    // a*b
+    // transpose
+    // det
 };
