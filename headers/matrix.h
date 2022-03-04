@@ -13,6 +13,7 @@ class Matrix
     int n; // lines
     int m; // columns
     VectorOfVector matrix;
+    int dotProduct(Vector a, Vector b);
 
 public:
     Matrix(int n, int m, int defaultElement);
@@ -25,10 +26,10 @@ public:
     Matrix operator-();
     Matrix operator*(int scalar);
     friend Matrix operator*(int scalar, Matrix &matrix);
-    // a*b
     Matrix operator*(Matrix &matrix);
-    //==
-    bool operator==(Matrix &matrix);
+    bool operator==(Matrix &a);
+    Vector getLine(int i);
+    Vector getColumn(int i);
     // transpose
     // det
     //++
@@ -36,10 +37,6 @@ public:
     // cout <<
     //[]
     //[][]
+    //cramerSolver
     // switch to templates instead of int
-
-    // tools
-    // multipliable
-    // diag
-    // ones
 };

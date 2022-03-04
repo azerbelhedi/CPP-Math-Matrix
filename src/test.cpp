@@ -15,4 +15,8 @@ void runAllTests()
     substractionMatrixTest();
     matrixScalarMultiplyTest();
     scalarMatrixMultiplyTest();
+    matrixCompareTest();
+    multipliableTest();
+    getLineAndColumnTest();
+    matrixMatrixProductTest();
 }

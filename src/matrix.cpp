@@ -2,6 +2,7 @@
 #include <string>
 #include <cassert>
 #include "../headers/matrix.h"
+#include "../headers/matrix_tools.h"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ int &Matrix::_m() { return m; }
 
 Matrix Matrix::operator+(Matrix &matrix)
 {
-    assert((n == matrix._n() || m == matrix._m()) && "can't add two matrices with different dimenssions");
+    assert((n == matrix._n() && m == matrix._m()) && "can't add two matrices with different dimenssions");
 
     Matrix res(n, m, 0);
     for (int i = 0; i < n; i++)
@@ -86,7 +87,61 @@ Matrix operator*(int scalar, Matrix &matrix)
     return matrix * scalar;
 }
 
-Matrix operator*(Matrix &matrix){
-
+/*
+    getLine() and getColumn() required for this fucntion
+*/
+Matrix Matrix::operator*(Matrix &matrix)
+{
+    assert(MatrixTools::multipliable(*this, matrix) && "can't multiply matrices with unvalid dimenssions!");
+    Matrix res(n, matrix._m(), 0);
+    // zu bearbeiten
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < matrix._m(); j++)
+        {
+            res.matrix[i][j] = this->dotProduct(this->getLine(i), matrix.getColumn(j));
+        }
+    }
+    return res;
 }
 
+bool Matrix::operator==(Matrix &a)
+{
+    if (n != a._n() || m != a._m())
+        return false;
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (matrix[i][j] != a.matrix[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+Vector Matrix::getLine(int i)
+{
+    return matrix[i];
+}
+
+Vector Matrix::getColumn(int i)
+{
+    Vector res(0);
+    for (int j = 0; j < n; j++)
+    {
+        res.push_back(matrix[j][i]);
+    }
+    return res;
+}
+
+int Matrix::dotProduct(Vector a, Vector b)
+{
+    int res = 0;
+    for (int i = 0; i < a.size(); i++)
+    {
+        res += a[i] * b[i];
+    }
+    return res;
+}
