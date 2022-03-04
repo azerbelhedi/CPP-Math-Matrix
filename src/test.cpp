@@ -19,4 +19,5 @@ void runAllTests()
     multipliableTest();
     getLineAndColumnTest();
     matrixMatrixProductTest();
+    transposeTest();
 }

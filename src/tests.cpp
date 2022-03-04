@@ -128,3 +128,13 @@ void matrixMatrixProductTest()
          << expectedMatrix.toString();
     cout << "\n\n";
 }
+
+void transposeTest()
+{
+    cout << "test: matrix transpose: \n";
+    Matrix m26({{1, 2, 3}, {4, 5, 6}});
+    Matrix m27 = m26.transpose();
+    cout << m26.toString() << "\n\n"
+         << m27.toString();
+    cout << "\n\n";
+}

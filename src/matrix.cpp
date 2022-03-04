@@ -145,3 +145,16 @@ int Matrix::dotProduct(Vector a, Vector b)
     }
     return res;
 }
+
+Matrix Matrix::transpose()
+{
+    Matrix res(m, n, 1);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            res.matrix[j][i] = matrix[i][j];
+        }
+    }
+    return res;
+}

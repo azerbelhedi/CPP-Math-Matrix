@@ -30,13 +30,16 @@ public:
     bool operator==(Matrix &a);
     Vector getLine(int i);
     Vector getColumn(int i);
-    // transpose
+    Matrix transpose();
+    //minorMatrix() //lapalce
     // det
     //++
     //--
     // cout <<
     //[]
     //[][]
-    //cramerSolver
+    // cramerMatrix(Matrix, Vector, int)
+    // cramerSolver(Matrix, Vector)
     // switch to templates instead of int
+    // make polynome class
 };

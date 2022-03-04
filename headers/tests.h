@@ -11,3 +11,4 @@ void matrixCompareTest();
 void multipliableTest();
 void getLineAndColumnTest();
 void matrixMatrixProductTest();
+void transposeTest();
