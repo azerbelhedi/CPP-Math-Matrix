@@ -49,3 +49,21 @@ void substractionMatrixTest()
     cout << m10.toString();
     cout << "\n\n";
 }
+
+void matrixScalarMultiplyTest()
+{
+    cout << "test: M*a \n";
+    Matrix m11(4, 5, 2);
+    Matrix m12 = m11 * 3;
+    cout << m12.toString();
+    cout << "\n\n";
+}
+
+void scalarMatrixMultiplyTest()
+{
+    cout << "test: a*M \n";
+    Matrix m13(2, 4, 5);
+    Matrix m14 = 4 * m13;
+    cout << m14.toString();
+    cout << "\n\n";
+}

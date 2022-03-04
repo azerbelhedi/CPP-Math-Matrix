@@ -23,9 +23,23 @@ public:
     Matrix operator+(Matrix &matrix);
     Matrix operator-(Matrix &matrix);
     Matrix operator-();
-    // scalar*b
-    // b*scalar
+    Matrix operator*(int scalar);
+    friend Matrix operator*(int scalar, Matrix &matrix);
     // a*b
+    Matrix operator*(Matrix &matrix);
+    //==
+    bool operator==(Matrix &matrix);
     // transpose
     // det
+    //++
+    //--
+    // cout <<
+    //[]
+    //[][]
+    // switch to templates instead of int
+
+    // tools
+    // multipliable
+    // diag
+    // ones
 };

@@ -67,3 +67,26 @@ Matrix Matrix::operator-(Matrix &a)
     res = -a + *this;
     return res;
 }
+
+Matrix Matrix::operator*(int scalar)
+{
+    Matrix res(n, m, 1);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            res.matrix[i][j] = matrix[i][j] * scalar;
+        }
+    }
+    return res;
+}
+
+Matrix operator*(int scalar, Matrix &matrix)
+{
+    return matrix * scalar;
+}
+
+Matrix operator*(Matrix &matrix){
+
+}
+

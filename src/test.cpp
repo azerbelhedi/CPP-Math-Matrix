@@ -13,4 +13,6 @@ void runAllTests()
     matrixAdditionTest();
     minusMatrixTest();
     substractionMatrixTest();
+    matrixScalarMultiplyTest();
+    scalarMatrixMultiplyTest();
 }
