@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cassert>
+#include <math.h>
 #include "../headers/matrix.h"
 #include "../headers/matrix_tools.h"
 
@@ -99,7 +100,7 @@ Matrix Matrix::operator*(Matrix &matrix)
     {
         for (int j = 0; j < matrix._m(); j++)
         {
-            res.matrix[i][j] = this->dotProduct(this->getLine(i), matrix.getColumn(j));
+            res.matrix[i][j] = this->dotProduct(this->getRow(i), matrix.getColumn(j));
         }
     }
     return res;
@@ -121,7 +122,7 @@ bool Matrix::operator==(Matrix &a)
     return true;
 }
 
-Vector Matrix::getLine(int i)
+Vector Matrix::getRow(int i)
 {
     return matrix[i];
 }
@@ -155,6 +156,56 @@ Matrix Matrix::transpose()
         {
             res.matrix[j][i] = matrix[i][j];
         }
+    }
+    return res;
+}
+
+Matrix Matrix::minorMatrix(int row, int column)
+{
+    // m and n should be bigger than 1
+    assert(n > 1 && m > 1 && "can't calculate minor matrix of a vector!\n");
+    VectorOfVector resMatrix(0, Vector(0));
+    for (int i = 0; i < n; i++)
+    {
+        if (i != row)
+        {
+            Vector rowVector(0);
+            for (int j = 0; j < m; j++)
+            {
+                if (j != column)
+                {
+                    rowVector.push_back(this->matrix[i][j]);
+                }
+            }
+            resMatrix.push_back(rowVector);
+        }
+    }
+    return Matrix(resMatrix);
+}
+
+int Matrix::det()
+{
+    assert(n == m && "can't calculate det of non NxN matrix!\n");
+    if (n == 2)
+    {
+        VectorOfVector matrix = this->matrix;
+        return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+    }
+
+    int res = 0;
+    for (int j = 0; j < m; j++)
+    {
+        res += pow(-1, j + 2) * this->matrix[0][j] * (this->minorMatrix(0, j)).det();
+    }
+    return res;
+}
+
+Matrix Matrix::power(int p)
+{
+    Matrix res = *this;
+    for (int i = 1; i < p; i++)
+    {
+        res = res * *this;
     }
     return res;
 }

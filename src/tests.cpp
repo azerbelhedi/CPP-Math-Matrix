@@ -93,7 +93,7 @@ void getLineAndColumnTest()
 {
     cout << "test: get line from matrix: \n";
     Matrix m22({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}});
-    Vector line = m22.getLine(1);
+    Vector line = m22.getRow(1);
     cout << "expected: 4 5 6 \ngot: ";
     for (Vector::iterator i = line.begin(); i < line.end(); i++)
     {
@@ -119,7 +119,7 @@ void matrixMatrixProductTest()
     Matrix expectedMatrix({{28, 41, 0}, {-44, -42, 10}});
     Matrix m25 = m23 * m24;
 
-    // this is one is supposed to produce an error
+    // this line is supposed to produce an error
     // Matrix m26 = m24 * m23;
     cout << "result: \n"
          << m25.toString()
@@ -136,5 +136,50 @@ void transposeTest()
     Matrix m27 = m26.transpose();
     cout << m26.toString() << "\n\n"
          << m27.toString();
+    cout << "\n\n";
+}
+
+void minorMatrixTest()
+{
+    cout << "test: minor matrix:\n";
+    Matrix m28({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+    Matrix m29 = m28.minorMatrix(0, 2);
+    Matrix expectedMatrix({{4, 5}, {7, 8}});
+    cout << "result:\n"
+         << m29.toString() << "\nexpected:\n"
+         << expectedMatrix.toString();
+    cout << "\n\n";
+}
+
+void detMatrixTest()
+{
+    cout << "test: matrix det:\n";
+    Matrix m30({{1, 2}, {3, 4}});
+    Matrix m31({{1, 5, 9}, {-12, 49, 6}, {2, 3, 8}});
+    Matrix m32({{0, 1, 0, 0, 0},
+                {0, 2, 1, 0, 2},
+                {0, 0, 0, 3, 0},
+                {-2, 0, 0, 0, 0},
+                {0, 3, 2, 0, 1}});
+    Matrix m33({{0, 1, 0, 0},
+                {0, 2, 1, 0},
+                {0, 0, 0, 3},
+                {-2, 0, 0, 0}});
+    cout << "result: " << m30.det() << " (expected: -2)\n";
+    cout << "result: " << m31.det() << " (expected: -292)\n";
+    cout << "result: " << m33.det() << " (expected: 6)\n";
+    cout << "result: " << m32.det() << " (expected: -18)\n";
+    cout << "\n\n";
+}
+
+void powerMatrixTest()
+{
+    cout << "test: matrix power(2):\n";
+    Matrix m33({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+    Matrix m34 = m33.power(3);
+    Matrix expectedMatrix({{468, 576, 684}, {1062, 1305, 1548}, {1656, 2034, 2412}});
+    cout << "result:\n"
+         << m34.toString() << "\nexpected:\n"
+         << expectedMatrix.toString();
     cout << "\n\n";
 }

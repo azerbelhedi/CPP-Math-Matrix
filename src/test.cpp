@@ -20,4 +20,7 @@ void runAllTests()
     getLineAndColumnTest();
     matrixMatrixProductTest();
     transposeTest();
+    minorMatrixTest();
+    detMatrixTest();
+    powerMatrixTest();
 }

@@ -28,18 +28,23 @@ public:
     friend Matrix operator*(int scalar, Matrix &matrix);
     Matrix operator*(Matrix &matrix);
     bool operator==(Matrix &a);
-    Vector getLine(int i);
+    Vector getRow(int i);
     Vector getColumn(int i);
     Matrix transpose();
-    //minorMatrix() //lapalce
-    // det
+    Matrix minorMatrix(int row, int column);
+    int det();
+    Matrix power(int p);
+    // sqr()
     //++
     //--
-    // cout <<
+    //*=
+    //-=
+    //+=
+    //  cout <<
     //[]
     //[][]
-    // cramerMatrix(Matrix, Vector, int)
-    // cramerSolver(Matrix, Vector)
-    // switch to templates instead of int
-    // make polynome class
+    //  cramerMatrix(Matrix, Vector, int)
+    //  cramerSolver(Matrix, Vector)
+    //  switch to templates instead of int
+    //  make polynome class
 };

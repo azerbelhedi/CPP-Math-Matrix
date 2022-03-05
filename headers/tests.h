@@ -12,3 +12,6 @@ void multipliableTest();
 void getLineAndColumnTest();
 void matrixMatrixProductTest();
 void transposeTest();
+void minorMatrixTest();
+void detMatrixTest();
+void powerMatrixTest();
